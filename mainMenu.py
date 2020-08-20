@@ -139,8 +139,8 @@ def highScore():
 
     font = pygame.font.SysFont('Arial', 24)
     draw_text(screen,"HIGH SCORE", (50, 150), font)
-    draw_text(screen,organizeNames(), (100, 200), font) #Draw the names
     draw_text(screen,organizeNumbers(), (400, 200), font) #Draw the scores
+    draw_text(screen,organizeNames(), (100, 200), font) #Draw the names
     buttons=[]
     buttons=setAlternButtons()
 

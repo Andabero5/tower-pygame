@@ -8,13 +8,13 @@ class Floor(ABC):
 class YellowFloor(Floor):
     
     def getFloor(self):
-        route = "Imagenes\Interfaz\Edificios\EdificioAmarillo.png"
+        route = "Images/Interface/Towers/tower-01.png"
         return route
 
 class BlueFloor(Floor):
 
     def getFloor(self):
-        route = "Imagenes\Interfaz\Edificios\EdificioAzul.jpg"
+        route = "Images/Interface/Towers/tower-03.png"
         return route
 
 class FloorFactory():

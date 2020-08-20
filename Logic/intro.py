@@ -52,7 +52,7 @@ def main():
     pygame.display.set_caption("Tower Blocks")
 
     #Se carga el fondo
-    background = pygame.image.load("Imagenes\Interfaz\Escenarios\Principal_Mesa.png").convert()
+    background = pygame.image.load("Images\Interface\Scenes\scene_Workspace.png").convert()
     
     factory = FloorFactory()
     floor = Floor(factory.getFloor(10))
