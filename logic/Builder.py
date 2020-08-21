@@ -1,4 +1,5 @@
 from floor import Floor
+from copy import copy, deepcopy
 
 
 class Director():
@@ -7,7 +8,7 @@ class Director():
     def setBuilder(self, builder):
         self.__builder = builder
 
-    def getData(self):
+    def getFloor(self):
         floor = apartment()
         floor.setImage(self.__builder.buildImage())
         floor.setX(self.__builder.buildX())
@@ -15,8 +16,9 @@ class Director():
         floor.setSpeed(self.__builder.buildSpeed())
         return floor
 
-    def getFloor(self, image, x, y, speed):
+    def copy(self, image, x, y, speed):
         floor = Floor(image, x, y, speed)
+        return copy(floor)
 
 
 class Builder():
@@ -98,8 +100,8 @@ def main():
     yellowFloor = YellowFloor()
     director = Director()
     director.setBuilder(yellowFloor)
-    data = director.getData()
-    floor = director.getFloor(
+    data = director.getFloor()
+    floor = director.copy(
         data.getImage(), data.getX(), data.getY(), data.getSpeed())
     print(floor)
 

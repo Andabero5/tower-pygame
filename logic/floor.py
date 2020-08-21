@@ -5,13 +5,13 @@ WIDTH = 500
 
 
 class Floor():
-    def __init__(self, imgFloor):
+    def __init__(self, imgFloor, x, y, speed):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(imgFloor)
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH/2
-        self.rect.centery = 75
-        self.speed = [5, 0]
+        self.rect.centerx = x
+        self.rect.centery = y
+        self.speed = speed
 
     def update(self, opc=0):
         if opc == 1:
