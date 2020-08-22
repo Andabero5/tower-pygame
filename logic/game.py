@@ -33,10 +33,11 @@ def main():
                     number += 1
         screen.blit(imagen_defondo, [0, 0])
         screen.blit(FloorArray[number].image, FloorArray[number].rect)
-        FloorArray[number].update()
-        if number != 0:
-            for n in range(0, number):
-                screen.blit(FloorArray[n].image, FloorArray[n].rect)
+        for n in range(0, number+1):
+            screen.blit(FloorArray[n].image, FloorArray[n].rect)
+            if n > 0:
+                FloorArray[n].update(action=1, floor=FloorArray[n-1])
+            else:
                 FloorArray[n].update()
 
     pygame.quit()

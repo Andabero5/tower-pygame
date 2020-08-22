@@ -23,8 +23,6 @@ class Floor():
             if self.rect.bottom >= HEIGHT-53:
                 self.speed[1] = 0
         else:
-            print('cuadro actual', self, self.rect)
-            print('cuadro anterior', floor, floor.rect)
             if pygame.sprite.collide_rect(floor, self):
                 self.speed[1] = 0
         self.rect.move_ip(self.speed)
