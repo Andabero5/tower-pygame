@@ -10,15 +10,13 @@ class Floor(ABC):
 class YellowFloor(Floor):
 
     def getFloor(self):
-        route = "images\YellowFloor.png"
-        return route
+        return "images\YellowFloor.png"
 
 
 class BlueFloor(Floor):
 
     def getFloor(self):
-        route = "images\BlueFloor.png"
-        return route
+        return "images\BlueFloor.png"
 
 
 class FloorFactory():

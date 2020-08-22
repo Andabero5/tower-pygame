@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from floor import Floor
-from AbstractFactory import FloorFactory
+from factoryMethod import FloorFactory
 
 
 class FloorCreator():
@@ -15,3 +15,10 @@ class FloorCreator():
         elif "blueFloor" == kindOfFloor:
             return self.__blueFloor__.clone()
         return None
+
+
+class Prototype():
+    def floorClone(self):
+        creator = FloorCreator()
+        floor = creator.retrieveFloor('blueFloor')
+        return floor
