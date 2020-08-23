@@ -22,9 +22,12 @@ class Floor():
         if action == 0:
             if self.rect.bottom >= HEIGHT-53:
                 self.speed[1] = 0
-        else:
-            if pygame.sprite.collide_rect(floor, self):
+        elif pygame.sprite.collide_rect(floor, self):
+            if self.rect.centerx >= floor.rect.centerx+75:
+                self.speed[1] = 10
+            else:
                 self.speed[1] = 0
+
         self.rect.move_ip(self.speed)
 
     def clone(self):
