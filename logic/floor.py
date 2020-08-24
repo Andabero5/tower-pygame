@@ -23,7 +23,7 @@ class Floor():
             if self.rect.bottom >= HEIGHT-53:
                 self.speed[1] = 0
         elif pygame.sprite.collide_rect(floor, self):
-            if self.rect.centerx >= floor.rect.centerx+75:
+            if self.rect.centerx > floor.rect.centerx+20:
                 self.speed[1] = 10
             else:
                 self.speed[1] = 0

@@ -29,8 +29,6 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     FloorArray[number].update(True)
-                    FloorArray.append(prototype.floorClone())
-                    number += 1
         screen.blit(imagen_defondo, [0, 0])
         screen.blit(FloorArray[number].image, FloorArray[number].rect)
         for n in range(0, number+1):
@@ -39,6 +37,9 @@ def main():
                 FloorArray[n].update(action=1, floor=FloorArray[n-1])
             else:
                 FloorArray[n].update()
+            if FloorArray[number].speed == [0, 0]:
+                FloorArray.append(prototype.floorClone())
+                number += 1
 
     pygame.quit()
 
