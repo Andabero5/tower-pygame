@@ -15,6 +15,6 @@ def setInstructions():
 def setHouses():
     houses = []
     for i in range(1,5):
-        house=pygame.image.load("Images/Interface/Towers/tower-0"+str(i)+".png")
+        house=pygame.image.load("Images/Interface/Towers/Floor-0"+str(i)+".png")
         houses.append(pygame.transform.scale(house, (100, 50)))
     return houses
