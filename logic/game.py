@@ -1,6 +1,6 @@
 import pygame
 from factoryMethod import FloorFactory
-from floor import Floor
+from floor import *
 from fabrica import *
 from edifice import *
 
@@ -28,13 +28,17 @@ def main():
                 loop = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    floor.update(True, 1, edifice)
+                    floor.update(True)
         screen.blit(imagen_defondo, [0, 0])
         screen.blit(floor.image, floor.rect)
-        floor.update()
-        if floor.rect.bottom > WIDTH/2:
+        if floor.speed == [0, 0]:
             edifice.addFloor(floor)
             floor = prototype.floorClone()
+            option = 1
+        if option > 0:
+            floor.update(action=1, group=edifice)
+        else:
+            floor.update()
         edifice.draw(screen)
         edifice.update()
 

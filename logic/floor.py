@@ -22,14 +22,12 @@ class Floor(pygame.sprite.Sprite):
         if action == 0:
             if self.rect.bottom >= HEIGHT-53:
                 self.speed[1] = 0
-        else:
+        elif action == 1:
             list = pygame.sprite.spritecollide(self, group, False)
             if list:
-                print('entro')
-                lastFloor = list[0]
-                if sprite.collide_rect(lastFloor, self):
-                    self.speed[1] = 0
-                if self.rect.centerx >= lastFloor.rect.centerx+75:
+                print(list)
+                self.speed[1] = 0
+                if self.rect.centerx >= list[0].rect.centerx+75:
                     self.speed[1] = 10
 
         self.rect.move_ip(self.speed)
