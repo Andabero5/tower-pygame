@@ -10,13 +10,13 @@ class Floor(ABC):
 class YellowFloor(Floor):
 
     def getFloor(self):
-        return "images\YellowFloor.png"
+        return "images\Interface\Towers//tower-01.png"
 
 
 class BlueFloor(Floor):
 
     def getFloor(self):
-        return "images\BlueFloor.png"
+        return "images\Interface\Towers//tower-02.png"
 
 
 class FloorFactory():

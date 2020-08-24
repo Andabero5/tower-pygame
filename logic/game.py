@@ -17,7 +17,8 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Tower Blocks")
-    imagen_defondo = pygame.image.load("images\principalScene.png").convert()
+    imagen_defondo = pygame.image.load(
+        "images\Interface\Scenes\scene_Workspace.png").convert()
     prototype = Prototype()
     floor = prototype.floorClone()
     edifice = Edifice()
