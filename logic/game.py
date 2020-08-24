@@ -9,18 +9,22 @@ HEIGHT = 800
 WIDTH = 500
 FloorArray = []
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-imagen_defondo = pygame.image.load("images\principalScene.png").convert()
+
 CLOCK = pygame.time.Clock()
 
 
 def main():
+    pygame.init()
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Tower Blocks")
+    imagen_defondo = pygame.image.load("images\principalScene.png").convert()
     prototype = Prototype()
     floor = prototype.floorClone()
     edifice = Edifice()
     loop = True
     option = 0
     while loop == True:
+
         CLOCK.tick(60)
         pygame.display.flip()
         for event in pygame.event.get():
@@ -46,4 +50,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
