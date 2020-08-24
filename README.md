@@ -13,7 +13,7 @@
 **Tower Blocks** es un juego que consite en ir soltando unos bloques  para armar unn edificio. Se pueden construir varios tipos de edificio:
 <center>
 
-![Edificios](Imagenes/IdeaJuego/EdificiosColores.PNG)
+![Edificios](Images/GameIdea/TowerColors.PNG)
 
 </center>
 
@@ -21,7 +21,7 @@ El jugador  tiene la posibilidad de desbloquear tres nuevas torres de acuerdo al
 
 <center>
 
-![Diseño](Imagenes/IdeaJuego/Diseño.PNG)
+![Diseño](Images/GameIdea/Design.PNG)
 
 </center>
 
@@ -47,7 +47,7 @@ escenarios de juego.
 
 * **State**: Se implementa para cambiar la velocidad con la cuál se mueve el segmento de edificio que caerá e irá construyendo la torre.
 ## **DIAGRAMA DE TOWER BLOCKS**
-![Diagrama](Imagenes/DiagramaTB.jpg)
+![Diagrama](Images/TBDiagram.jpg)
 
 
 
@@ -56,15 +56,18 @@ escenarios de juego.
 ### **Menú**
 ### **Escenarios de juego**
 
-![Escenario1](Imagenes/Interfaz/Escenarios/Escenario1.jpeg)
+![Escenario1](Images/Interface/Scenes/scene-01.png)
 
-![Escenario2](Imagenes/Interfaz/Escenarios/Escenario2.jpeg)
+![Escenario2](Images/Interface/Scenes/scene-02.png)
 
-![Escenario3](Imagenes/Interfaz/Escenarios/Escenario3.jpeg)
+![Escenario3](Images/Interface/Scenes/scene-03.png)
 
-![Escenario4](Imagenes/Interfaz/Escenarios/Escenario4.jpeg)
+![Escenario4](Images/Interface/Scenes/scene-04.png)
 
 ### **Torres**
 
-![Edificio Amarillo](Imagenes/Interfaz/Edificios/Edificio.png)
+![Edificio Amarillo](Images/Interface/Towers/tower-01.png)
+![Edificio Rojo](Images/Interface/Towers/tower-02.png)
+![Edificio Azul](Images/Interface/Towers/tower-03.png)
+![Edificio Verde](Images/Interface/Towers/tower-04.png)
 ### **Tablero de puntuaciones**

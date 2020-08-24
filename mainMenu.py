@@ -1,8 +1,10 @@
 import pygame, sys
 from pygame.locals import *
-from Logic.intro import *
+from Logic.game import *
 from Logic.Menu.HighScore import *
 from Logic.Menu.Instructions import *
+from Logic.singleton import *
+
 
 #Initialize
 pygame.init()
@@ -18,7 +20,7 @@ BLACK = (0,0,0)
 
 #Set window
 dimensions = [HEIGHT, WIDHT]
-pygame.display.set_caption('MAIN MENU')
+pygame.display.set_caption('TOWER BLOXX')
 screen = pygame.display.set_mode((dimensions),pygame.NOFRAME)
 
 #main font 
@@ -58,6 +60,7 @@ def draw_ButtonText(textG, image_container, rec_container, render_font, color):
 
 
 click = False #Set the click on false (Use it with the Buttons)
+origin = Singleton.get_instance() #Get Instance to Singleton
 
 #Draw the buttons
 def drawButtons(button_list):
@@ -103,6 +106,8 @@ def main_menu():
         buttons.append({'text': "Salir", 'image': image_button, 'rect': button_4, 'on_click': False})
 
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
             if event.type == MOUSEBUTTONDOWN:
                 mouse = event.pos
                 for button in buttons:
@@ -139,8 +144,10 @@ def highScore():
 
     font = pygame.font.SysFont('Arial', 24)
     draw_text(screen,"HIGH SCORE", (50, 150), font)
-    draw_text(screen,organizeNumbers(), (400, 200), font) #Draw the scores
-    draw_text(screen,organizeNames(), (100, 200), font) #Draw the names
+    origin.set_valueScore(organizeNumbers())
+    draw_text(screen,numsToString(origin.get_valueScore()), (400, 200), font) #Draw the scores
+    origin.set_valueNames(organizeNames())
+    draw_text(screen,namesToString(origin.get_valueNames()), (100, 200), font) #Draw the names
     buttons=[]
     buttons=setAlternButtons()
 
