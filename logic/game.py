@@ -2,7 +2,7 @@ import pygame
 from factoryMethod import FloorFactory
 from floor import Floor
 from fabrica import *
-from time import sleep
+from edifice import *
 
 
 HEIGHT = 800
@@ -16,9 +16,9 @@ CLOCK = pygame.time.Clock()
 
 def main():
     prototype = Prototype()
-    FloorArray.append(prototype.floorClone())
+    floor = prototype.floorClone()
+    edifice = Edifice()
     loop = True
-    number = 0
     option = 0
     while loop == True:
         CLOCK.tick(60)
@@ -28,17 +28,15 @@ def main():
                 loop = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    FloorArray[number].update(True)
-                    FloorArray.append(prototype.floorClone())
-                    number += 1
+                    floor.update(True, 1, edifice)
         screen.blit(imagen_defondo, [0, 0])
-        screen.blit(FloorArray[number].image, FloorArray[number].rect)
-        for n in range(0, number+1):
-            screen.blit(FloorArray[n].image, FloorArray[n].rect)
-            if n > 0:
-                FloorArray[n].update(action=1, floor=FloorArray[n-1])
-            else:
-                FloorArray[n].update()
+        screen.blit(floor.image, floor.rect)
+        floor.update()
+        if floor.rect.bottom > WIDTH/2:
+            edifice.addFloor(floor)
+            floor = prototype.floorClone()
+        edifice.draw(screen)
+        edifice.update()
 
     pygame.quit()
 

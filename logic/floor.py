@@ -5,7 +5,7 @@ HEIGHT = 800
 WIDTH = 500
 
 
-class Floor():
+class Floor(pygame.sprite.Sprite):
     def __init__(self, imgFloor):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(imgFloor)
@@ -14,7 +14,7 @@ class Floor():
         self.rect.centery = 75
         self.speed = [choice([5, -5]), 0]
 
-    def update(self, fall=False, action=0, floor=None):
+    def update(self, fall=False, action=0, group=None):
         if fall == True:
             self.speed = [0, 10]
         elif self.rect.right >= WIDTH or self.rect.left <= 0:
@@ -22,11 +22,15 @@ class Floor():
         if action == 0:
             if self.rect.bottom >= HEIGHT-53:
                 self.speed[1] = 0
-        elif pygame.sprite.collide_rect(floor, self):
-            if self.rect.centerx >= floor.rect.centerx+75:
-                self.speed[1] = 10
-            else:
-                self.speed[1] = 0
+        else:
+            list = pygame.sprite.spritecollide(self, group, False)
+            if list:
+                print('entro')
+                lastFloor = list[0]
+                if sprite.collide_rect(lastFloor, self):
+                    self.speed[1] = 0
+                if self.rect.centerx >= lastFloor.rect.centerx+75:
+                    self.speed[1] = 10
 
         self.rect.move_ip(self.speed)
 
