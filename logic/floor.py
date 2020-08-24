@@ -25,9 +25,10 @@ class Floor(pygame.sprite.Sprite):
         elif action == 1:
             list = pygame.sprite.spritecollide(self, group, False)
             if list:
-                print(list)
                 self.speed[1] = 0
-                if self.rect.centerx >= list[0].rect.centerx+75:
+                if self.rect.centerx >= list[0].rect.centerx+80 or self.rect.centerx <= list[0].rect.centerx-80:
+                    list[0].kill()
+                    self.remove()
                     self.speed[1] = 10
 
         self.rect.move_ip(self.speed)
