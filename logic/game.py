@@ -1,8 +1,8 @@
 import pygame
-from factoryMethod import FloorFactory
-from floor import *
-from fabrica import *
-from edifice import *
+from .factoryMethod import FloorFactory
+from .floor import *
+from logic.fabrica import *
+from logic.edifice import *
 
 
 HEIGHT = 800

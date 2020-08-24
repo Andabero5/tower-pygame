@@ -1,5 +1,5 @@
 import pygame
-from floor import *
+from .floor import *
 
 
 class Edifice(pygame.sprite.Group):

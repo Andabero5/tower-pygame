@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from floor import Floor
-from factoryMethod import FloorFactory
+from .floor import Floor
+from .factoryMethod import FloorFactory
 
 
 class FloorCreator():
