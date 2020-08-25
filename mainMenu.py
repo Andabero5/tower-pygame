@@ -158,8 +158,9 @@ def main_menu():
 
 
 def game():
-    pygame.quit()
+   
     main()
+    exit()
 
 
 def highScore():
