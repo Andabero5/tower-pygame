@@ -12,11 +12,11 @@ class Floor(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH/2
         self.rect.centery = 75
-        self.speed = [choice([5, -5]), 0]
+        self.speed = [choice([8, -8]), 0]
 
     def update(self, fall=False, action=0, group=None):
         if fall == True:
-            self.speed = [0, 10]
+            self.speed = [0, 13]
         elif self.rect.right >= WIDTH or self.rect.left <= 0:
             self.speed[0] = -self.speed[0]
         if action == 0:

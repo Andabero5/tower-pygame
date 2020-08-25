@@ -13,16 +13,32 @@ class YellowFloor(Floor):
         return "images\Interface\Towers//tower-01.png"
 
 
-class BlueFloor(Floor):
+class RedFloor(Floor):
 
     def getFloor(self):
         return "images\Interface\Towers//tower-02.png"
 
+class BlueFloor(Floor):
+
+    def getFloor(self):
+        return "images\Interface\Towers//tower-03.png"
+
+class GreenFloor(Floor):
+
+    def getFloor(self):
+        return "images\Interface\Towers//tower-04.png"
+
 
 class FloorFactory():
     @classmethod
-    def getFloor(cls, score):
-        if score == 10:
+    def getFloor(cls, option):
+        if option == 1:
             return YellowFloor.getFloor(cls)
-        elif score == 20:
+        elif option == 2:
+            return RedFloor.getFloor(cls)
+        elif option == 3:
             return BlueFloor.getFloor(cls)
+        elif option==4:
+            return GreenFloor.getFloor(cls)
+
+
