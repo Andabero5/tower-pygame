@@ -30,7 +30,9 @@ class Floor(pygame.sprite.Sprite):
                     list[0].kill()
                     self.remove()
                     self.speed[1] = 10
-
+        elif action == 2:
+            if self.rect.bottom > HEIGHT:
+                self.speed[1] = 0
         self.rect.move_ip(self.speed)
 
     def clone(self):

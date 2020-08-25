@@ -7,7 +7,6 @@ from logic.edifice import *
 
 HEIGHT = 800
 WIDTH = 500
-FloorArray = []
 
 
 CLOCK = pygame.time.Clock()
@@ -24,8 +23,9 @@ def main():
     edifice = Edifice()
     loop = True
     option = 0
+    delete = False
+    first = True
     while loop == True:
-
         CLOCK.tick(60)
         pygame.display.flip()
         for event in pygame.event.get():
@@ -40,8 +40,24 @@ def main():
             edifice.addFloor(floor)
             floor = prototype.floorClone()
             option = 1
-        if option > 0:
-            floor.update(action=1, group=edifice)
+            delete = False
+        if delete:
+            floor.update(action=2)
+        elif option > 0:
+            if len(edifice.sprites()) == 6:
+                if first:
+                    first = False
+                    edifice.empty()
+                    delete = True
+                else:
+                    firstSprite = 0
+                    for i in edifice.sprites():
+                        if firstSprite == 0:
+                            firstSprite += 1
+                        else:
+                            edifice.remove(i)
+            else:
+                floor.update(action=1, group=edifice)
         else:
             floor.update()
         edifice.draw(screen)
