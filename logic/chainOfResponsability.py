@@ -15,8 +15,7 @@ class Handler:
 class HandlerOptionOne(Handler):
 
     def handler_request(self, score):
-        if score >= 0 and score < 7:
-
+        if score >= 0 and score < 4:
             scenario = pygame.image.load(
                 "images\Interface\Scenes\scene_Workspace.png").convert()
             return scenario
@@ -27,7 +26,7 @@ class HandlerOptionOne(Handler):
 class HandlerOptionTwo(Handler):
 
     def handler_request(self, score):
-        if score >= 6 and score < 13:
+        if score >= 4 and score < 8:
             scenario = pygame.image.load(
                 "images\Interface\Scenes\scene-02.png").convert()
             return scenario
@@ -39,7 +38,7 @@ class HandlerOptionTwo(Handler):
 class HandlerOptionThree(Handler):
 
     def handler_request(self, score):
-        if score >= 13 and score < 20:
+        if score >= 8 and score < 13:
             scenario = pygame.image.load(
                 "images\Interface\Scenes\scene-03.png").convert()
             return scenario
@@ -50,7 +49,7 @@ class HandlerOptionThree(Handler):
 class HandlerOptionFour(Handler):
 
     def handler_request(self, score):
-        if score >= 20:
+        if score >= 13:
             scenario = pygame.image.load(
                 "images\Interface\Scenes\scene-04.png")
             return scenario

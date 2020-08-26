@@ -16,7 +16,7 @@ class Floor(pygame.sprite.Sprite):
 
     def update(self, fall=False, action=0, group=None):
         if fall == True:
-            self.speed = [0, 10]
+            self.speed = [0, 20]
         elif self.rect.right >= WIDTH or self.rect.left <= 0:
             self.speed[0] = -self.speed[0]
         if action == 0:
