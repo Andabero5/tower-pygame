@@ -29,9 +29,11 @@ font = pygame.font.SysFont('Courier', 20)
 
 # Set Pics of the Background and buttons, and Scale them
 image_background = pygame.image.load("Images/Menu/backgroundMenu.png")
+image_background2 = pygame.image.load("Images/Menu/backgroundMenu2.png")
 image_button = pygame.image.load("Images/Menu/button.png")
 image_button_back = pygame.image.load("Images/Menu/buttonBack.png")
 background = pygame.transform.scale(image_background, (HEIGHT, WIDHT))
+background2 = pygame.transform.scale(image_background2, (HEIGHT, WIDHT))
 
 # Draw all the text on the window
 
@@ -55,8 +57,6 @@ def draw_text(surface, text, pos, font, color=BLACK):
         y += word_height  # Start on new row.
 
 # Take a text and put it on a container
-
-
 def draw_ButtonText(textG, image_container, rec_container, render_font, color):
     text = render_font.render(textG, 1, color)
     center = text.get_rect()
@@ -70,8 +70,6 @@ click = False  # Set the click on false (Use it with the Buttons)
 origin = Singleton.get_instance()  # Get Instance to Singleton
 
 # Draw the buttons
-
-
 def drawButtons(button_list):
     for button in button_list:
         screen.blit(button['image'], button['rect'])
@@ -165,15 +163,13 @@ def game():
 def highScore():
 
     screen.blit(background, [0, 0])
-
+    screen.blit(background2, [0, 0])
     font = pygame.font.SysFont('Arial', 24)
     draw_text(screen, "HIGH SCORE", (50, 150), font)
     origin.set_valueScore(organizeNumbers())
-    draw_text(screen, numsToString(origin.get_valueScore()),
-              (400, 200), font)  # Draw the scores
+    draw_text(screen, numsToString(origin.get_valueScore()),(400, 200), font)  # Draw the scores
     origin.set_valueNames(organizeNames())
-    draw_text(screen, namesToString(origin.get_valueNames()),
-              (100, 200), font)  # Draw the names
+    draw_text(screen, namesToString(origin.get_valueNames()),(100, 200), font)  # Draw the names
     buttons = []
     buttons = setAlternButtons()
 
@@ -209,6 +205,7 @@ def highScore():
 def instructions():
 
     screen.blit(background, [0, 0])
+    screen.blit(background2, [0, 0])
 
     instructions = setInstructions()  # Take the values of the function's list
     house = setHouses()  # Take the values of the function's list

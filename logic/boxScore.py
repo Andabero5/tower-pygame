@@ -3,8 +3,9 @@ import pygame.locals as pl
 import pygame
 import sys
 from pygame.locals import *
-from Menu.HighScore import *
-from singleton import *
+from .Menu.HighScore import *
+from .singleton import *
+from .game import *
 
 
 # Initialize
@@ -33,7 +34,6 @@ image_button = pygame.image.load("Images/Menu/button.png")
 whiteRectangle = pygame.image.load("Images/Menu/whiteRectangle.png")
 background = pygame.transform.scale(image_background, (WIDHT, HEIGHT))
 textBox = pygame.transform.scale(whiteRectangle, (270, 40))
-
 
 # Draw all the text on the window
 def draw_text(surface, text, pos, font, color=BLACK):
@@ -242,7 +242,7 @@ class TextInput:
         self.cursor_position = 0
 
 
-def main():
+def mainBoxScore(scoreGotten):
 
     final = Singleton.get_instance()
     screen.blit(background, [0, 0])
@@ -275,9 +275,9 @@ def main():
                 exit()
 
         if buttons[0]['on_click'] and click:
-
+            numGotten=scoreGotten
             saveScore(numGotten)
-            saveName(textinput.get_text())
+            saveName(textinput.get_text().upper())
             final.set_valueScore(organizeNumbers())
             final.set_valueNames(organizeNames())
 

@@ -1,10 +1,11 @@
 import pygame
+import sys
 from .factoryMethod import FloorFactory
 from .floor import *
 from .prototype import *
 from .edifice import *
 from .chainOfResponsability import *
-import sys
+from .boxScore import *
 
 HEIGHT = 800
 WIDTH = 500
@@ -99,9 +100,7 @@ def main():
                 "images\gameOver.png")
             screen.blit(
                 gameOver, (0, (HEIGHT/2)-50))
+            mainBoxScore(floorCount*10)
+            pygame.quit()
 
     pygame.quit()
-
-
-if __name__ == "__main__":
-    main()
