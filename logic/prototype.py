@@ -18,7 +18,7 @@ class FloorCreator():
 
 
 class Prototype():
-    def floorClone(self):
+    def floorClone(self, colorFloor):
         creator = FloorCreator()
-        floor = creator.retrieveFloor('blueFloor')
+        floor = creator.retrieveFloor(colorFloor)
         return floor

@@ -1,9 +1,9 @@
 import pygame
 from .factoryMethod import FloorFactory
 from .floor import *
-from logic.prototype import *
-from logic.edifice import *
-
+from .prototype import *
+from .edifice import *
+from .chainOfResponsability import *
 
 HEIGHT = 800
 WIDTH = 500
