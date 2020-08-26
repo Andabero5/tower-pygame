@@ -1,27 +1,44 @@
-from abc import ABC,abstractmethod
+from abc import ABC, abstractmethod
+
 
 class Floor(ABC):
     @abstractmethod
-    def getFloor (self):
+    def getFloor(self):
         pass
 
+
 class YellowFloor(Floor):
-    
+
     def getFloor(self):
-        route = "Imagenes\Interfaz\Edificios\EdificioAmarillo.png"
-        return route
+        return "images\Interface\Towers//tower-01.png"
+
+
+class RedFloor(Floor):
+
+    def getFloor(self):
+        return "images\Interface\Towers//tower-02.png"
+
 
 class BlueFloor(Floor):
 
     def getFloor(self):
-        route = "Imagenes\Interfaz\Edificios\EdificioAzul.jpg"
-        return route
+        return "images\Interface\Towers//tower-03.png"
+
+
+class GreenFloor(Floor):
+
+    def getFloor(self):
+        return "images\Interface\Towers//tower-04.png"
+
 
 class FloorFactory():
-      
-    def getFloor(self,score):
-        if score == 10:
-            return YellowFloor.getFloor(self)
-        elif score == 20:
-            return BlueFloor.getFloor(self)
-        
+    @classmethod
+    def getFloor(cls, option):
+        if option == 1:
+            return YellowFloor.getFloor(cls)
+        elif option == 2:
+            return RedFloor.getFloor(cls)
+        elif option == 3:
+            return BlueFloor.getFloor(cls)
+        elif option == 4:
+            return GreenFloor.getFloor(cls)
