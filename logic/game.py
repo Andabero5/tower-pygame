@@ -19,7 +19,7 @@ def main():
     imagen_defondo = pygame.image.load(
         "images\Interface\Scenes\scene_Workspace.png").convert()
     prototype = Prototype()
-    floor = prototype.floorClone()
+    floor = prototype.floorClone('yellowFloor')
     edifice = Edifice()
     loop = True
     option = 0
@@ -38,7 +38,7 @@ def main():
         screen.blit(floor.image, floor.rect)
         if floor.speed == [0, 0]:
             edifice.addFloor(floor)
-            floor = prototype.floorClone()
+            floor = prototype.floorClone('yellowFloor')
             option = 1
             delete = False
         if delete:
