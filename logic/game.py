@@ -6,7 +6,7 @@ from .prototype import *
 from .edifice import *
 from .chainOfResponsability import *
 from .boxScore import *
-
+import time
 HEIGHT = 800
 WIDTH = 500
 
@@ -96,11 +96,7 @@ def main():
         edifice.draw(screen)
         edifice.update()
         if pause == True:
-            gameOver = pygame.image.load(
-                "images\gameOver.png")
-            screen.blit(
-                gameOver, (0, (HEIGHT/2)-50))
             mainBoxScore(floorCount*10)
-            pygame.quit()
+            loop = False
 
     pygame.quit()

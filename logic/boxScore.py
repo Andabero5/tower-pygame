@@ -35,25 +35,6 @@ whiteRectangle = pygame.image.load("Images/Menu/whiteRectangle.png")
 background = pygame.transform.scale(image_background, (WIDHT, HEIGHT))
 textBox = pygame.transform.scale(whiteRectangle, (270, 40))
 
-# Draw all the text on the window
-def draw_text(surface, text, pos, font, color=BLACK):
-    # 2D array where each row is a list of words.
-    words = [word.split(' ') for word in text.splitlines()]
-    space = font.size(' ')[0]  # The width of a space.
-    max_width, max_height = surface.get_size()
-    x, y = pos
-    for line in words:
-        for word in line:
-            word_surface = font.render(word, 0, color)
-            word_width, word_height = word_surface.get_size()
-            if x + word_width >= max_width:
-                x = pos[0]  # Reset the x.
-                y += word_height  # Start on new row.
-            surface.blit(word_surface, (x, y))
-            x += word_width + space
-        x = pos[0]  # Reset the x.
-        y += word_height  # Start on new row.
-
 
 # Take a text and put it on a container
 def draw_ButtonText(textG, image_container, rec_container, render_font, color):
@@ -243,11 +224,15 @@ class TextInput:
 
 
 def mainBoxScore(scoreGotten):
-
+    pygame.init()
+    pygame.display.set_caption('TOWER BLOXX')
+    screen = pygame.display.set_mode((dimensions), pygame.NOFRAME)
     final = Singleton.get_instance()
     screen.blit(background, [0, 0])
-    draw_text(screen, "INGRESE SU NOMBRE", (20, 100), font)
-
+    fillTextBox = font.render("INGRESE SU NOMBRE", False, BLACK)
+    screen.blit(fillTextBox, (20, 100))
+    gameOver = pygame.image.load("images\gameOver.png")
+    screen.blit(gameOver, [0, 0])
     # Create TextInput-object
     textinput = TextInput()
 
@@ -275,12 +260,11 @@ def mainBoxScore(scoreGotten):
                 exit()
 
         if buttons[0]['on_click'] and click:
-            numGotten=scoreGotten
+            numGotten = scoreGotten
             saveScore(numGotten)
             saveName(textinput.get_text().upper())
             final.set_valueScore(organizeNumbers())
             final.set_valueNames(organizeNames())
-
             exit()
             click = False
 
