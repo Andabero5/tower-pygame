@@ -158,8 +158,8 @@ def main_menu():
 
 
 def game():
-    pygame.quit()
     main()
+    exit()
 
 
 def highScore():
@@ -179,6 +179,8 @@ def highScore():
 
     while True:
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
             if event.type == MOUSEBUTTONDOWN:
                 mouse = event.pos
                 for button in buttons:
@@ -224,6 +226,8 @@ def instructions():
     while True:
 
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
             if event.type == MOUSEBUTTONDOWN:
                 mouse = event.pos
                 for button in buttons:
