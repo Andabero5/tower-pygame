@@ -1,18 +1,17 @@
 import pygame
 from copy import copy, deepcopy
-from random import choice
 HEIGHT = 800
 WIDTH = 500
 
 
 class Floor(pygame.sprite.Sprite):
-    def __init__(self, imgFloor):
+    def __init__(self, imgFloor, speed):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(imgFloor)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH/2
         self.rect.centery = 75
-        self.speed = [choice([5, -5]), 0]
+        self.speed = speed
 
     def update(self, fall=False, action=0, group=None):
         if fall == True:

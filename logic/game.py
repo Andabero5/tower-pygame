@@ -4,6 +4,7 @@ from .floor import *
 from .prototype import *
 from .edifice import *
 from .chainOfResponsability import *
+import sys
 
 HEIGHT = 800
 WIDTH = 500
@@ -63,7 +64,8 @@ def main():
                 floorCount += 1
                 if actualNum % 5 == 0:
                     pre = 0
-                imagen_defondo = chain.operacion(floorCount)
+                if floorCount < 18:
+                    imagen_defondo = chain.operacion(floorCount)
             if actualNum < pre:
                 pre -= 1
                 floorCount -= 1
@@ -93,11 +95,11 @@ def main():
         edifice.draw(screen)
         edifice.update()
         if pause == True:
-
             gameOver = pygame.image.load(
                 "images\gameOver.png")
             screen.blit(
                 gameOver, (0, (HEIGHT/2)-50))
+            sys.exit()
 
     pygame.quit()
 

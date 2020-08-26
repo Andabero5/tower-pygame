@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from random import choice
 
 
 class Floor(ABC):
@@ -10,25 +11,25 @@ class Floor(ABC):
 class YellowFloor(Floor):
 
     def getFloor(self):
-        return "images\Interface\Towers//tower-01.png"
+        return ["images\Interface\Towers//tower-01.png", [choice([5, -5]), 0]]
 
 
 class RedFloor(Floor):
 
     def getFloor(self):
-        return "images\Interface\Towers//tower-02.png"
+        return ["images\Interface\Towers//tower-02.png", [choice([7, -7]), 0]]
 
 
 class BlueFloor(Floor):
 
     def getFloor(self):
-        return "images\Interface\Towers//tower-03.png"
+        return ["images\Interface\Towers//tower-03.png", [choice([9, -9]), 0]]
 
 
 class GreenFloor(Floor):
 
     def getFloor(self):
-        return "images\Interface\Towers//tower-04.png"
+        return ["images\Interface\Towers//tower-04.png", [choice([9, -9]), 0]]
 
 
 class FloorFactory():

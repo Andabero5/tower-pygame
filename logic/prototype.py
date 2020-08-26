@@ -6,10 +6,14 @@ from .factoryMethod import FloorFactory
 
 class FloorCreator():
     def __init__(self):
-        self.__yellowFloor__ = Floor(FloorFactory.getFloor(1))
-        self.__redFloor__ = Floor(FloorFactory.getFloor(2))
-        self.__blueFloor__ = Floor(FloorFactory.getFloor(3))
-        self.__greenFloor__ = Floor(FloorFactory.getFloor(4))
+        self.__yellowFloor__ = Floor(FloorFactory.getFloor(1)[
+                                     0], FloorFactory.getFloor(1)[1])
+        self.__redFloor__ = Floor(FloorFactory.getFloor(2)[
+                                  0], FloorFactory.getFloor(2)[1])
+        self.__blueFloor__ = Floor(FloorFactory.getFloor(3)[
+                                   0], FloorFactory.getFloor(3)[1])
+        self.__greenFloor__ = Floor(FloorFactory.getFloor(4)[
+                                    0], FloorFactory.getFloor(4)[1])
 
     def retrieveFloor(self, kindOfFloor):
         if "yellowFloor" == kindOfFloor:
