@@ -18,7 +18,7 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Tower Blocks")
     prototype = Prototype()
-    floor = prototype.floorClone('redFloor')
+    floor = prototype.floorClone('yellowFloor')
     edifice = Edifice()
     chain = ChainFloor()
     imagen_defondo = chain.operacion(1)
@@ -49,14 +49,14 @@ def main():
             pause = True
         if floor.speed == [0, 0]:
             edifice.addFloor(floor)
-            if floorCount < 6:
-                floor = prototype.floorClone('redFloor')
-            elif floorCount >= 6 and floorCount < 12:
-                floor = prototype.floorClone('blueFloor')
-            elif floorCount >= 12 and floorCount < 18:
-                floor = prototype.floorClone('greenFloor')
-            elif floorCount >= 18:
+            if floorCount < 5:
                 floor = prototype.floorClone('yellowFloor')
+            elif floorCount >= 5 and floorCount < 11:
+                floor = prototype.floorClone('redFloor')
+            elif floorCount >= 11 and floorCount < 17:
+                floor = prototype.floorClone('blueFloor')
+            elif floorCount >= 17:
+                floor = prototype.floorClone('greenFloor')
             option = 1
             delete = False
             if actualNum >= pre:
@@ -99,7 +99,6 @@ def main():
                 "images\gameOver.png")
             screen.blit(
                 gameOver, (0, (HEIGHT/2)-50))
-            sys.exit()
 
     pygame.quit()
 
