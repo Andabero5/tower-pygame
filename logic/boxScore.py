@@ -1,47 +1,44 @@
-"""
-Copyright 2017, Silas Gyger, silasgyger@gmail.com, All rights reserved.
-Borrowed from https://github.com/Nearoo/pygame-text-input under the MIT license.
-"""
-
 import os.path
 import pygame.locals as pl
-import pygame, sys
+import pygame
+import sys
 from pygame.locals import *
 from Menu.HighScore import *
 from singleton import *
 
 
-#Initialize
+# Initialize
 pygame.init()
 mainClock = pygame.time.Clock()
 
-#measures of the window
+# measures of the window
 WIDHT = 500
 HEIGHT = 300
 
-#Colors
-WHITE = (0,0,0)
-BLACK = (0,0,0)
+# Colors
+WHITE = (0, 0, 0)
+BLACK = (0, 0, 0)
 
-#Set window
-dimensions = [WIDHT,HEIGHT]
+# Set window
+dimensions = [WIDHT, HEIGHT]
 pygame.display.set_caption('TOWER BLOXX')
-screen = pygame.display.set_mode((dimensions),pygame.NOFRAME)
+screen = pygame.display.set_mode((dimensions), pygame.NOFRAME)
 
-#main font 
+# main font
 font = pygame.font.SysFont('Courier', 20)
 
-#Set Pics of the Background and buttons, and Scale them
+# Set Pics of the Background and buttons, and Scale them
 image_background = pygame.image.load("Images/Menu/backgroundMenu.png")
 image_button = pygame.image.load("Images/Menu/button.png")
 whiteRectangle = pygame.image.load("Images/Menu/whiteRectangle.png")
-background = pygame.transform.scale(image_background, (WIDHT,HEIGHT))
-textBox = pygame.transform.scale(whiteRectangle, (270,40))
+background = pygame.transform.scale(image_background, (WIDHT, HEIGHT))
+textBox = pygame.transform.scale(whiteRectangle, (270, 40))
 
 
-#Draw all the text on the window
+# Draw all the text on the window
 def draw_text(surface, text, pos, font, color=BLACK):
-    words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
+    # 2D array where each row is a list of words.
+    words = [word.split(' ') for word in text.splitlines()]
     space = font.size(' ')[0]  # The width of a space.
     max_width, max_height = surface.get_size()
     x, y = pos
@@ -58,26 +55,30 @@ def draw_text(surface, text, pos, font, color=BLACK):
         y += word_height  # Start on new row.
 
 
-#Take a text and put it on a container
+# Take a text and put it on a container
 def draw_ButtonText(textG, image_container, rec_container, render_font, color):
     text = render_font.render(textG, 1, color)
     center = text.get_rect()
     x_diference = image_container.center[0] - center.center[0]
     y_diference = image_container.center[1] - center.center[1]
-    screen.blit(text, [rec_container.left + x_diference, rec_container.top + y_diference])
+    screen.blit(text, [rec_container.left + x_diference,
+                       rec_container.top + y_diference])
 
 
-click = False #Set the click on false (Use it with the Buttons)
+click = False  # Set the click on false (Use it with the Buttons)
 
-#Draw the buttons
+# Draw the buttons
+
+
 def drawButtons(button_list):
     for button in button_list:
         screen.blit(button['image'], button['rect'])
-        draw_ButtonText(button['text'], button['image'].get_rect(), button['rect'], font, BLACK)
+        draw_ButtonText(
+            button['text'], button['image'].get_rect(), button['rect'], font, BLACK)
 
 
 class TextInput:
-    
+
     def __init__(
             self,
             initial_string="",
@@ -107,7 +108,7 @@ class TextInput:
         self.font_size = font_size
         self.max_string_length = max_string_length
         self.input_string = initial_string  # Inputted text
-
+        self.numGotten = 0
         if not os.path.isfile(font_family):
             font_family = pygame.font.match_font(font_family)
 
@@ -118,12 +119,14 @@ class TextInput:
         self.surface.set_alpha(0)
 
         # Vars to make keydowns repeat after user pressed a key for some time:
-        self.keyrepeat_counters = {}  # {event.key: (counter_int, event.unicode)} (look for "***")
+        # {event.key: (counter_int, event.unicode)} (look for "***")
+        self.keyrepeat_counters = {}
         self.keyrepeat_intial_interval_ms = repeat_keys_initial_ms
         self.keyrepeat_interval_ms = repeat_keys_interval_ms
 
         # Things cursor:
-        self.cursor_surface = pygame.Surface((int(self.font_size / 20 + 1), self.font_size))
+        self.cursor_surface = pygame.Surface(
+            (int(self.font_size / 20 + 1), self.font_size))
         self.cursor_surface.fill(cursor_color)
         self.cursor_position = len(initial_string)  # Inside text
         self.cursor_visible = True  # Switches every self.cursor_switch_ms ms
@@ -160,7 +163,8 @@ class TextInput:
 
                 elif event.key == pl.K_RIGHT:
                     # Add one to cursor_pos, but do not exceed len(input_string)
-                    self.cursor_position = min(self.cursor_position + 1, len(self.input_string))
+                    self.cursor_position = min(
+                        self.cursor_position + 1, len(self.input_string))
 
                 elif event.key == pl.K_LEFT:
                     # Subtract one from cursor_pos, but do not go below zero:
@@ -173,7 +177,8 @@ class TextInput:
                         + event.unicode
                         + self.input_string[self.cursor_position:]
                     )
-                    self.cursor_position += len(event.unicode)  # Some are empty, e.g. K_UP
+                    # Some are empty, e.g. K_UP
+                    self.cursor_position += len(event.unicode)
 
             elif event.type == pl.KEYUP:
                 # *** Because KEYUP doesn't include event.unicode, this dict is stored in such a weird way
@@ -182,7 +187,8 @@ class TextInput:
 
         # Update key counters:
         for key in self.keyrepeat_counters:
-            self.keyrepeat_counters[key][0] += self.clock.get_time()  # Update clock
+            # Update clock
+            self.keyrepeat_counters[key][0] += self.clock.get_time()
 
             # Generate new key events if enough time has passed:
             if self.keyrepeat_counters[key][0] >= self.keyrepeat_intial_interval_ms:
@@ -192,10 +198,12 @@ class TextInput:
                 )
 
                 event_key, event_unicode = key, self.keyrepeat_counters[key][1]
-                pygame.event.post(pygame.event.Event(pl.KEYDOWN, key=event_key, unicode=event_unicode))
+                pygame.event.post(pygame.event.Event(
+                    pl.KEYDOWN, key=event_key, unicode=event_unicode))
 
         # Re-render text surface:
-        self.surface = self.font_object.render(self.input_string, self.antialias, self.text_color)
+        self.surface = self.font_object.render(
+            self.input_string, self.antialias, self.text_color)
 
         # Update self.cursor_visible
         self.cursor_ms_counter += self.clock.get_time()
@@ -204,7 +212,8 @@ class TextInput:
             self.cursor_visible = not self.cursor_visible
 
         if self.cursor_visible:
-            cursor_y_pos = self.font_object.size(self.input_string[:self.cursor_position])[0]
+            cursor_y_pos = self.font_object.size(
+                self.input_string[:self.cursor_position])[0]
             # Without this, the cursor is invisible when self.cursor_position > 0:
             if self.cursor_position > 0:
                 cursor_y_pos -= self.cursor_surface.get_width()
@@ -212,8 +221,7 @@ class TextInput:
 
         self.clock.tick()
         return False
-    
-    
+
     def get_surface(self):
         return self.surface
 
@@ -234,38 +242,40 @@ class TextInput:
         self.cursor_position = 0
 
 
-
 def main():
 
     final = Singleton.get_instance()
     screen.blit(background, [0, 0])
-    draw_text(screen,"INGRESE SU NOMBRE", (20, 100), font)
+    draw_text(screen, "INGRESE SU NOMBRE", (20, 100), font)
 
     # Create TextInput-object
     textinput = TextInput()
 
     while True:
         postButton = image_button.get_rect()
-        
+
         buttons = []
         postButton.topleft = [150, 220]
-        buttons.append({'text': "Enviar", 'image': image_button, 'rect': postButton, 'on_click': False})
+        buttons.append({'text': "Enviar", 'image': image_button,
+                        'rect': postButton, 'on_click': False})
         events = pygame.event.get()
         for event in events:
             if event.type == MOUSEBUTTONDOWN:
                 mouse = event.pos
                 for button in buttons:
-                    button['on_click'] = button['rect'].colliderect([mouse[0], mouse[1], 1, 1]) #Compare between the mouse pos and buttons pos 
+                    # Compare between the mouse pos and buttons pos
+                    button['on_click'] = button['rect'].colliderect(
+                        [mouse[0], mouse[1], 1, 1])
                 click = True
             if event.type == MOUSEBUTTONUP:
                 for button in buttons:
-                    button['on_click'] = False #Compare between the click pos and buttons pos 
+                    # Compare between the click pos and buttons pos
+                    button['on_click'] = False
             if event.type == pygame.QUIT:
                 exit()
 
         if buttons[0]['on_click'] and click:
 
-            numGotten=0
             saveScore(numGotten)
             saveName(textinput.get_text())
             final.set_valueScore(organizeNumbers())
@@ -273,10 +283,10 @@ def main():
 
             exit()
             click = False
-        
+
         drawButtons(buttons)
-        screen.blit(textBox,[60,130])
-        
+        screen.blit(textBox, [60, 130])
+
         # Feed it with events every frame
         textinput.update(events)
         # Blit its surface onto the screen
